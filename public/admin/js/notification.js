@@ -135,7 +135,7 @@ $(document).ready(function(){
 		})
 		$('#ModalNotification').modal('hide')
 		// window.stop();
-		return false;   
+		// return false;   
 	})
 })
  
