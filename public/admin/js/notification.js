@@ -3,9 +3,7 @@ var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 function update(r,id) {
 	var i = r.parentNode.parentNode.rowIndex;
 	$('#id').empty();
-	$('#rowid').attr('value',"");
-	$('#title').attr('value',"");
-	$('#content').html('');
+	$('#NotificationSubmit')[0].reset();
 	$('.error_title').css('display','none');
 	$('.error_content').css('display','none');
 	console.log(i);
@@ -56,9 +54,13 @@ function deleteRow(r,id){
 $(document).ready(function(){
 	$('#addNotification').click(function(){
 		$('#id').empty();
+		// var str = 'Some very long string';
+		//  str = str.substring(0,9)+'...';
+		// console.log(str)
 		$('#rowid').attr('value','');
 		$('#title').attr('value','');
 		$('#content').html('');
+		$('#NotificationSubmit')[0].reset();
 		$('#titleProduct').html('Add new Notification');
 		
 	})
@@ -68,7 +70,7 @@ $(document).ready(function(){
 		let title = $('#title').val();
 		let content = $('#content').val();
 		let table = document.getElementById("tableNotification");
-
+		let rowid = $('#rowid').val();
 
 		if (title == "") {
 			$('.error_title').html('Vui lòng nhập title');
@@ -84,8 +86,9 @@ $(document).ready(function(){
 		} else {
 			$('.error_content').css('display','none');
 		}
-		let rowid = $('#rowid').val();
 		
+		// $('#ModalNotification').modal('hide');
+		// return false;
 		$.ajax({
 			url:"save",
 			method:'POST',
@@ -98,14 +101,14 @@ $(document).ready(function(){
 				if (data.error!="") {
 					alert(data.error)
 					console.log(data.error)
-					// $('#ModalNotification').modal('hide')
+						
 					return false;
 				}
 				
 				if (rowid=='') {
 					console.log(data.notification)
 					const row = table.insertRow(1);
-					row.insertCell(0).innerHTML = data.notification.title;
+					row.insertCell(0).innerHTML = data.notification.title.substring(0,15)+'...';
 					row.insertCell(1).innerHTML = data.notification.author;
 					row.insertCell(2).innerHTML = data.notification.day_add;
 					row.insertCell(3).innerHTML = 'pendding';
@@ -114,7 +117,7 @@ $(document).ready(function(){
 								alert('add new success!')
 				} else {
 					const cells = table.rows[rowid].cells;
-					cells[0].innerHTML = data.notification.title;
+					cells[0].innerHTML = data.notification.title.substring(0,15)+'...';
 					cells[1].innerHTML = data.notification.author;
 					cells[2].innerHTML = data.notification.day_add;
 					cells[3].innerHTML = data.notification.status;
@@ -129,7 +132,8 @@ $(document).ready(function(){
 			}
 
 		})
-		
+		$('#ModalNotification').modal('hide')
+		// window.stop();
 		return false;   
 	})
 })

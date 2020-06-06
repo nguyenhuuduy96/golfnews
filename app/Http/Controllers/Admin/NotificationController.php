@@ -34,7 +34,7 @@ class NotificationController extends Controller
 	    			$notification->delete();
 	    			return response()->json(['error'=>'']);
 	    		} else {
-	    			return response()->json(['error'=>'hết giờ xóa']);
+	    			return response()->json(['error'=>'chỉ xóa được khi đúng ngày đăng tin và trước 20h!']);
 	    		}
 	    		
 	    		
@@ -65,7 +65,7 @@ class NotificationController extends Controller
 	    				$update->save();
 	    				return response()->json(['notification'=>$update,'error'=>'']);
 		    		} else {
-		    			return response()->json(['error'=>'hết giờ update','notification'=>'']);
+		    			return response()->json(['error'=>'chỉ được update vào khi đúng ngày đăng tin và trước 20h!','notification'=>'']);
 		    		}
 	    			
 	    			

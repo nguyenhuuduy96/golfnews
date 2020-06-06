@@ -34,7 +34,7 @@ $title="Notification"
 							@foreach($notifications as $notification)
 							<tr>
 								<td>
-									{{Str::limit($notification->title,20,'...')}}
+									{{Str::limit($notification->title,15,'...')}}
 								</td>
 								<td>
 									{{$notification->author}}
@@ -76,17 +76,15 @@ $title="Notification"
 				<div class="container">
 					<form class="row" id="NotificationSubmit">
 						@csrf
-						<div class="col-sm-12" id="getIdproduct">
-
-						</div>
-						<div class="col-sm-12">
+						
+						<div class="col-sm-12" id="emptyNotification">
 							<div class="form-group" >
 								<div id="id">
 
 								</div>
 								<label for="type" >Title:</label>
 								<input type="hidden" class="form-control" id="rowid" placeholder="ten san pham" name="rowid" value="" >
-								<input type="type" class="form-control" id="title" placeholder="title" name="title" >
+								<input type="text" class="form-control" id="title" placeholder="title" name="title" >
 								<span class="error_title" style="color: red"></span>
 							</div>
 							<div class="form-group">
