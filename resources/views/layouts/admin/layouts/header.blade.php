@@ -57,7 +57,7 @@
           </a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navLogin" style="right: 40px;">
             <a class="dropdown-item" href="#">{{Auth::user()->name}}</a>
-            <a class="dropdown-item" href="#">Logout</a>
+            <a class="dropdown-item" href="{{route('logout')}}">Logout</a>
             <a class="dropdown-item" href="#">Something else here</a>
           </div>
         </li>
