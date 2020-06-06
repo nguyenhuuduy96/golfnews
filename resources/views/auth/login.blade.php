@@ -60,48 +60,14 @@
           </form>
 
         </div>
-    <a href="#" class="text-center text-white" >Register a new membership</a>
+    <a href="{{route('register')}}" class="text-center text-white" >Register a new membership</a>
         
       </div>
 
     </div>
   </div>
 <script src="{{asset('register-login/js/login.js')}}" ></script>
-<script type="text/javascript">
- 
 
-
-
-
-
-
-// firebase.auth().signOut().then(function() {
-//   // Sign-out successful.
-//   console.log('Sign-out successful.');
-
-// }).catch(function(error) {
-//   // An error happened.
-// });
-// console.log(firebase.auth());
-
-
-
-
-// firebase.auth().onAuthStateChanged(function(user) {
-//     var user = firebase.auth().currentUser;
-//   if (user) {
-//     // User is signed in.
-//     console.log(user)
-//     user.providerData.forEach(function (profile) {
-       
-//         console.log("  phoneNumber: " + profile.phoneNumber);
-//       });
-//   } else {
-//     console.log('s')
-//     // No user is signed in.
-//   }
-// });
-  </script>
 </body>
 </html>
 
