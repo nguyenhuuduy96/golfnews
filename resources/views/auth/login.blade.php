@@ -1,79 +1,74 @@
-
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Firebase Phone Number Auth</title>
-  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
- 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sign Up Form by Colorlib</title>
 
-
-
-  <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
-  <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-
-  <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
-  <link rel="stylesheet" type="text/css" href="{{asset('admin/login.css')}}">
-   <link rel="stylesheet" href="{{asset('register-login/fonts/material-icon/css/material-design-iconic-font.min.css')}}">
-  
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="{{asset('register-login/fonts/material-icon/css/material-design-iconic-font.min.css')}}">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
+    <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
     <!-- Main css -->
     <link rel="stylesheet" href="{{asset('register-login/css/style.css')}}">
-  <meta name="csrf-token" content="{{ csrf_token() }}" />
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
 
-  
 </head>
 <body>
-  
-<div class="container h-100">
-    <div class="d-flex justify-content-center h-100">
-      <div class="user_card">
-        <div class="d-flex justify-content-center" >
-          <div class="brand_logo_container" style="top:10px">
-            <img src="{{asset('register-login/images/signin-image.jpg')}}" class="brand_logo" alt="Logo" id="logo"> 
-          </div>
-        </div>
 
-        <div class="d-flex justify-content-center form_container">
-          <form >
-          {{--   @csrf --}}
-             
-            <div class="input-group mb-3 mt-5" id="phone">
-              <div class="input-group-append" >
-              {{--   <select class="input-group-text first_Phone" >
-                  <option value="+84">+84</option>
-                  <option value="+86">+86</option>
-                  <option value="+1">+1</option>
-                </select> --}}
-                <span class="input-group-text"></span>
-              
-              </div>
-              <input type="Number" id="phoneNumber" class="form-control input_user" value="" placeholder="phone register">
-                          
-              <div id="recaptcha-container"></div>
+    <div class="main">
+
+        <!-- Sign up form -->
+        <section class="sign-in">
+            <div class="container">
+                <div class="signin-content">
+                    <div class="signin-image">
+                        <figure><img src="{{asset('register-login/images/signin-image.jpg')}}" alt="sing up image"></figure>
+                        <a href="{{route('register')}}" class="signup-image-link">Create an account</a>
+                    </div>
+
+                    <div class="signin-form">
+                        <h2 class="form-title">Sign up</h2>
+                        <p class="title">phone Number</p>
+                        <form class="register-form" id="login-form" action="javascript:0">
+                            <div class="form-group" id="emptyForm">
+                                <label for="your_name"><i class="zmdi zmdi-phone material-icons-name"></i></label>
+                                <input type="text" name="phone" id="phone" placeholder="Phone register"/>
+                                <span class="error"></span>
+                            </div>
+                            <div id="recaptcha-container"></div>
+                            <div class="form-group form-button" id="verify">
+                                <!-- <input type="submit" name="signin" id="signin" class="form-submit" value="Log in"/> -->
+                                <button onclick="verify()" class="btn btn-primary" id="sign-in-button">submit</button>
+                            </div>
+                        </form>
+                       
+                        <div class="social-login">
+                            <span class="social-label">Or login with</span>
+                            <ul class="socials">
+                                <li><a href="#"><i class="display-flex-center zmdi zmdi-facebook"></i></a></li>
+                                <li><a href="#"><i class="display-flex-center zmdi zmdi-twitter"></i></a></li>
+                                <li><a href="#"><i class="display-flex-center zmdi zmdi-google"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <span class="error" style="color: white"></span>
-            
-            
-            <div class="d-flex justify-content-center mt-3 login_container" id="verify">
-            <button type="button" name="button" class="btn login_btn" id="sign-in-button" onclick="onSignInSubmit();">VERIFY</button>
-
-           </div>
-          </form>
-
-        </div>
-    <a href="{{route('register')}}" class="text-center text-white" >Register a new membership</a>
-        
-      </div>
+        </section>
+      
 
     </div>
-  </div>
-<script src="{{asset('register-login/js/login.js')}}" ></script>
 
-</body>
+    <!-- JS -->
+    
+    <script src="{{asset('register-login/js/main.js')}}"></script>
+    <script src="{{asset('register-login/js/jquery/jquery.min.js')}}"></script>
+    <script src="{{asset('register-login/js/test.js')}}"></script>
+    
+    
+   
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
 </html>
-
-
-

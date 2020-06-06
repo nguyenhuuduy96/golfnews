@@ -37,9 +37,6 @@ class NotificationController extends Controller
 	    			return response()->json(['error'=>'chỉ xóa được khi đúng ngày đăng tin và trước 20h!']);
 	    		}
 	    		
-	    		
-	    		# code...
-	    		
 	    	
 	    }else{
 	    	return response()->json(['error'=>'hết giờ xóa']);

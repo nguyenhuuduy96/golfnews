@@ -8,7 +8,7 @@
 				<div class="case">
 					<div class="row">
 						<div class="col-md-6 col-lg-6 col-xl-8 d-flex">
-							<a href="blog-single.html" class="img w-100 mb-3 mb-md-0" style="background-image: url({{asset('home/images/image/banner1.jpg')}}"></a>
+							<a href="blog-single.html" class="img w-100 mb-3 mb-md-0" style="background-image: url({{asset('home/images/image/banner1.jpg')}})"></a>
 						</div>
 						<div class="col-md-6 col-lg-6 col-xl-4 d-flex">
 							<div class="text w-100 pl-md-3">

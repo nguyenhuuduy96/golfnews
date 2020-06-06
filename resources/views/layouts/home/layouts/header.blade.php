@@ -13,6 +13,7 @@
 	          <li class="nav-item"><a href="#" class="nav-link">Contact</a></li>
 	          @if(!empty(Auth::user()))
 		      <li class="nav-item"><a href="#" class="nav-link">{{Auth::user()->name}}</a></li>
+		      <li class="nav-item"><a href="{{route('notification')}}" class="nav-link">Admin</a></li>
 	          <li class="nav-item"><a href="{{route('logout')}}" class="nav-link">Logout</a></li>
 	          @else
 			  <li class="nav-item"><a href="{{route('register')}}" class="nav-link">Register</a></li>
