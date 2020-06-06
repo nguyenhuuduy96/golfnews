@@ -33,7 +33,7 @@
                     <div class="signin-form">
                         <h2 class="form-title">Sign up</h2>
                         <p class="title">phone Number</p>
-                        <form class="register-form" id="login-form" action="javascript:0">
+                        <form class="register-form" id="login-form" action="javascript:void(0)">
                             <div class="form-group" id="emptyForm">
                                 <label for="your_name"><i class="zmdi zmdi-phone material-icons-name"></i></label>
                                 <input type="text" name="phone" id="phone" placeholder="Phone register"/>

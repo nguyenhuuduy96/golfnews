@@ -74,7 +74,7 @@ $title="Notification"
 			<!-- Modal body -->
 			<div class="modal-body">
 				<div class="container">
-					<form class="row" id="NotificationSubmit" action="javascript:0">
+					<form class="row" id="NotificationSubmit" action="javascript:void(0)">
 						@csrf
 						
 						<div class="col-sm-12" id="emptyNotification">
