@@ -9,13 +9,9 @@ use App\Models\Notification;
 class NotificationController extends Controller
 {
     public function index(Request $req){
-    	// $time_expired=date('20:00:00');
-    	// $today=date("Y-m-d, H:i:s");
-    	// echo $today;
-    	// dd($time_expired);
+    	
     	$notifications = Notification::paginate(10);
-    	// $notification = Notification::find(8);
-    	// echo date('Y-m-d',strtotime($notification->created_at));die();
+  
     	return view('admin.list',['notifications'=>$notifications]);
     }
     public function getUpdate(Request $req){
@@ -80,7 +76,7 @@ class NotificationController extends Controller
 	    	} else {
 	    		if (!empty($Notification)) {
 	    		
-	    		return response()->json(['error'=>'Ngày hôm nay đã tin rồi đăng!']);
+	    		return response()->json(['error'=>'Ngày hôm nay đã tin rồi đăng!','notification'=>'']);
 		    	}
 		    	if ($KqFormat>date('02:00:00')) {
 

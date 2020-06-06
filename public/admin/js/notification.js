@@ -94,10 +94,11 @@ $(document).ready(function(){
 			cache:false,
 			processData:false,
 			success:function(data){
-				console.log(data.notification);
+				// console.log(data.notification);
 				if (data.error!="") {
 					alert(data.error)
 					console.log(data.error)
+					// $('#ModalNotification').modal('hide')
 					return false;
 				}
 				
@@ -110,6 +111,7 @@ $(document).ready(function(){
 					row.insertCell(3).innerHTML = 'pendding';
 					row.insertCell(4).innerHTML =`<a class="btn btn-danger" onclick="deleteRow(this,`+data.notification.id+`)"><i class="nc-icon nc-simple-remove"></i></a>
 								<a class="btn btn-success" onclick="update(this,`+data.notification.id+`)" data-toggle="modal" data-target="#ModalNotification"><i class="nc-icon nc-tag-content"></i></a>`;
+								alert('add new success!')
 				} else {
 					const cells = table.rows[rowid].cells;
 					cells[0].innerHTML = data.notification.title;
@@ -118,6 +120,7 @@ $(document).ready(function(){
 					cells[3].innerHTML = data.notification.status;
 					cells[4].innerHTML =`<a class="btn btn-danger" onclick="deleteRow(this,`+data.notification.id+`)"><i class="nc-icon nc-simple-remove"></i></a>
 								<a class="btn btn-success" onclick="update(this,`+data.notification.id+`)" data-toggle="modal" data-target="#ModalNotification"><i class="nc-icon nc-tag-content"></i></a>`;
+								alert('update success!')
 
 				}
 				
@@ -127,7 +130,7 @@ $(document).ready(function(){
 
 		})
 		
-		// return false;   
+		return false;   
 	})
 })
  
