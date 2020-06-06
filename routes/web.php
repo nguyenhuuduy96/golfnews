@@ -26,7 +26,7 @@ Route::get('logout','Admin\AuthController@logout')->name('logout');
 Route::get('/',function(){
 	return view('home.index');
 })->name('home');
-Route::group(['prefix'=>'notification'],function(){
+Route::group(['prefix'=>'notification','middleware' => 'auth'],function(){
 	Route::get('list','Admin\NotificationController@index')->name('notification');
 	Route::post('update','Admin\NotificationController@getUpdate')->name('notification.update');
 	Route::post('save','Admin\NotificationController@save')->name('save.notification');
