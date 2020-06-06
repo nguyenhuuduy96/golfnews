@@ -29,7 +29,7 @@ var appVerifier = window.recaptchaVerifier;
 function onSignInSubmit(){
       var phone = $('#phoneNumber').val();
       var phone_regex =/((92|86|96|97|98|32|33|34|35|36|37|38|39|89|90|93|70|79|77|76|78|88|91|94|83|84|85|81|82|56|58|99|59)+([0-9]{7})\b)/g;
-      var phoneNumber =$('.first_Phone').val() + phone;
+      var phoneNumber ='+84' + phone;
       if ( phone == "") {
         $('.error').html('vui lòng nhập');
         return false;
