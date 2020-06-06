@@ -108,7 +108,8 @@ $(document).ready(function(){
 				if (rowid=='') {
 					console.log(data.notification)
 					const row = table.insertRow(1);
-					row.insertCell(0).innerHTML = data.notification.title.substring(0,15)+'...';
+					
+					row.insertCell(0).innerHTML = data.notification.title.substring(0,30)+(data.notification.title.length > 30 ? "..." : "");
 					row.insertCell(1).innerHTML = data.notification.author;
 					row.insertCell(2).innerHTML = data.notification.day_add;
 					row.insertCell(3).innerHTML = 'pendding';
@@ -117,7 +118,7 @@ $(document).ready(function(){
 								alert('add new success!')
 				} else {
 					const cells = table.rows[rowid].cells;
-					cells[0].innerHTML = data.notification.title.substring(0,15)+'...';
+					cells[0].innerHTML = data.notification.title.substring(0,30)+(data.notification.title.length > 30 ? "..." : "");
 					cells[1].innerHTML = data.notification.author;
 					cells[2].innerHTML = data.notification.day_add;
 					cells[3].innerHTML = data.notification.status;

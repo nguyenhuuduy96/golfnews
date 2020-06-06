@@ -34,7 +34,7 @@ $title="Notification"
 							@foreach($notifications as $notification)
 							<tr>
 								<td>
-									{{Str::limit($notification->title,15,'...')}}
+									{{Str::limit($notification->title,30,'...')}}
 								</td>
 								<td>
 									{{$notification->author}}
