@@ -9,7 +9,7 @@ function update(r,id) {
 	console.log(i);
 	console.log(id);
 	$.ajax({
-		url:"update",
+		url:"notification/update",
 		method:"post",
 		data:{_token:CSRF_TOKEN,id:id},
 		success:function(data){
@@ -32,7 +32,7 @@ function deleteRow(r,id){
 	let alertdelete = confirm("Are you sure you want to delete!");
 	if (alertdelete == true) {
 		$.ajax({
-			url:'delete',
+			url:'notification/delete',
 			method:'post',
 			data:{_token:CSRF_TOKEN,id:id},
 			success:function(data){
@@ -47,6 +47,49 @@ function deleteRow(r,id){
 		})
 	}
 
+}
+function disable(r,id){
+	let row = r.parentNode.parentNode.rowIndex;
+	let table = document.getElementById("tableNotification");
+	console.log(id);
+	let alertDisable = confirm("Are you sure you want to disable!");
+	if (alertDisable == true) {
+		$.ajax({
+			url:'notification/disable',
+			method:'post',
+			data:{_token:CSRF_TOKEN,id:id},
+			success:function(data){
+				if (data.error!='') {
+					alert(data.error)
+					return false;
+				}else{
+					const cells = table.rows[row].cells;
+					cells[0].innerHTML = data.notification.title.substring(0,30)+(data.notification.title.length > 30 ? "..." : "");
+					cells[1].innerHTML = data.notification.author;
+					cells[2].innerHTML = data.notification.day_add;
+					cells[3].innerHTML = ``;
+					cells[4].innerHTML =`<a class="btn btn-danger" onclick="deleteRow(this,`+data.notification.id+`)"><i class="nc-icon nc-simple-remove"></i></a>
+								<a class="btn btn-success" onclick="update(this,`+data.notification.id+`)" data-toggle="modal" data-target="#ModalNotification"><i class="nc-icon nc-tag-content"></i></a>
+								`
+					if (data.notification.status=='disable') {
+						cells[3].innerHTML+=`<stong class="text-danger">`+data.notification.status+`</strong>`;
+						cells[4].innerHTML+=`<a class="btn btn-primary text-white" onclick="disable(this,`+data.notification.id+`)">pendding</a>`;
+					} else {
+						cells[3].innerHTML+=`<stong class="text-primary">`+data.notification.status+`</strong>`;
+						cells[4].innerHTML+=`<a class="btn btn-danger text-white" onclick="disable(this,`+data.notification.id+`)">disable</a>`;
+					}
+								// `if (data.notification.status=='disable') {
+								// 	``
+								// } else {
+								// 	`<a class="btn btn-danger text-white" onclick="disable(this,`+data.notification.id+`)">disable</a>`
+								// }`;
+								// alert('success!');
+
+				}
+				
+			}
+		})
+	}
 }
 // window.onload = function(){
 // 	$('#ModalNotification').modal('hide');
@@ -90,7 +133,7 @@ $(document).ready(function(){
 		// $('#ModalNotification').modal('hide');
 		// return false;
 		$.ajax({
-			url:"save",
+			url:"notification/save",
 			method:'POST',
 			data: new FormData(this),
 			contentType:false,
@@ -112,18 +155,28 @@ $(document).ready(function(){
 					row.insertCell(0).innerHTML = data.notification.title.substring(0,30)+(data.notification.title.length > 30 ? "..." : "");
 					row.insertCell(1).innerHTML = data.notification.author;
 					row.insertCell(2).innerHTML = data.notification.day_add;
-					row.insertCell(3).innerHTML = 'pendding';
+					row.insertCell(3).innerHTML = '<stong class="text-primary">pendding</strong>';
 					row.insertCell(4).innerHTML =`<a class="btn btn-danger" onclick="deleteRow(this,`+data.notification.id+`)"><i class="nc-icon nc-simple-remove"></i></a>
-								<a class="btn btn-success" onclick="update(this,`+data.notification.id+`)" data-toggle="modal" data-target="#ModalNotification"><i class="nc-icon nc-tag-content"></i></a>`;
-								alert('add new success!')
+								<a class="btn btn-success" onclick="update(this,`+data.notification.id+`)" data-toggle="modal" data-target="#ModalNotification"><i class="nc-icon nc-tag-content"></i></a>
+								<a class="btn btn-danger text-white" onclick="disable(this,`+data.notification.id+`)">disable</a>`
+					alert('add new success!');
 				} else {
 					const cells = table.rows[rowid].cells;
 					cells[0].innerHTML = data.notification.title.substring(0,30)+(data.notification.title.length > 30 ? "..." : "");
 					cells[1].innerHTML = data.notification.author;
 					cells[2].innerHTML = data.notification.day_add;
-					cells[3].innerHTML = data.notification.status;
+					cells[3].innerHTML = ``;
+
 					cells[4].innerHTML =`<a class="btn btn-danger" onclick="deleteRow(this,`+data.notification.id+`)"><i class="nc-icon nc-simple-remove"></i></a>
-								<a class="btn btn-success" onclick="update(this,`+data.notification.id+`)" data-toggle="modal" data-target="#ModalNotification"><i class="nc-icon nc-tag-content"></i></a>`;
+								<a class="btn btn-success" onclick="update(this,`+data.notification.id+`)" data-toggle="modal" data-target="#ModalNotification"><i class="nc-icon nc-tag-content"></i></a>
+								`;
+					if (data.notification.status=='disable') {
+						cells[3].innerHTML+=`<stong class="text-danger">`+data.notification.status+`</strong>`;
+						cells[4].innerHTML+=`<a class="btn btn-primary text-white" onclick="disable(this,`+data.notification.id+`)">pendding</a>`;
+					} else {
+						cells[3].innerHTML+=`<stong class="text-primary">`+data.notification.status+`</strong>`;
+						cells[4].innerHTML+=`<a class="btn btn-danger text-white" onclick="disable(this,`+data.notification.id+`)">disable</a>`;
+					}
 								alert('update success!')
 
 				}

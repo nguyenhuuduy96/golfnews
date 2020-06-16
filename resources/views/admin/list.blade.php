@@ -23,7 +23,7 @@ $title="Notification"
 							<th>
 								day add
 							</th>
-							<th class="text-right">
+							<th>
 								status
 							</th>
 							<th>
@@ -42,13 +42,23 @@ $title="Notification"
 								<td>
 									{{$notification->day_add}}
 								</td>
-								<td class="text-right">
+								@if($notification->status=='disable')
+								<td  class="text-danger">
+								@else	
+								<td class="text-primary">
+								@endif
 									{{$notification->status}}
+									
 								</td>
 								<td>
 								<a class="btn btn-danger" onclick="deleteRow(this,{{$notification->id}})"><i class="nc-icon nc-simple-remove"></i></a>
 								<a class="btn btn-success" onclick="update(this,{{$notification->id}})" data-toggle="modal" data-target="#ModalNotification"><i class="nc-icon nc-tag-content"></i></a>
+								@if($notification->status=='pendding')
+								<a class="btn btn-danger text-white" onclick="disable(this,{{$notification->id}})">disable</a>
+								@else
+								<a class="btn btn-primary text-white" onclick="disable(this,{{$notification->id}})">pendding</a>
 								</td>
+								@endif
 							</tr>
 							@endforeach
 						</tbody>

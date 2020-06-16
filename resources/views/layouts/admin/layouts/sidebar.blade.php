@@ -6,8 +6,8 @@
           </div>
           <!-- <p>CT</p> -->
         </a>
-        <a href="https://www.creative-tim.com" class="simple-text logo-normal">
-          Creative Tim
+        <a href="list" class="simple-text logo-normal">
+          Golf News
           <!-- <div class="logo-image-big">
             <img src="{{asset('admin/img/logo-big.png')}}">
           </div> -->
@@ -23,9 +23,10 @@
             </a>
           </li>
           <li>
-            <a href="./icons.html">
+            <a href="{{route('notification')}}">
               <i class="nc-icon nc-diamond"></i>
-              <p>Icons</p>
+              <p>Notifilcation</p>
+
             </a>
           </li>
           <li>

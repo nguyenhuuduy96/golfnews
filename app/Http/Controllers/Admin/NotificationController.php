@@ -27,10 +27,11 @@ class NotificationController extends Controller
     	//$kq là thời gian hết hạn chừ thời gian hiện tại
     	$kq =  mktime ($h-date('H'), $i-date('i'), $s - date('s'));
 	    $KqFormat= date('H:i:s',$kq);
+
 	    if ($time_expired>date('H:i:s')) {
 	    	
 	    		$notification = Notification::find($req->id);
-	    		if (date('Y-m-d',strtotime($notification->created_at))!==date('Y-m-d')) {
+	    		if (date('Y-m-d',strtotime($notification->created_at))==date('Y-m-d')) {
 	    			$notification->delete();
 	    			return response()->json(['error'=>'']);
 	    		} else {
@@ -40,6 +41,39 @@ class NotificationController extends Controller
 	    	
 	    }else{
 	    	return response()->json(['error'=>'hết giờ xóa']);
+	    }
+    }
+    public function disable(Request $req){
+
+    	$time_expired=date('22:00:00');
+    	$today=date("Y-m-d");
+    	$h=date('H',strtotime($time_expired));
+    	$i=date('i',strtotime($time_expired));
+    	$s=date('s',strtotime($time_expired));
+    	//$kq là thời gian hết hạn chừ thời gian hiện tại
+    	$kq =  mktime ($h-date('H'), $i-date('i'), $s - date('s'));
+	    $KqFormat= date('H:i:s',$kq);
+	   
+	    if ($time_expired>date('H:i:s')) {
+	    	
+	    		$notification = Notification::find($req->id);
+	    		if (date('Y-m-d',strtotime($notification->created_at))==date('Y-m-d')) {
+	    			if ($notification->status=='disable') {
+	    				$notification->status='pendding';
+	    			} else {
+	    				$notification->status='disable';
+	    			}
+	    			
+	    			
+	    			$notification->save();
+	    			return response()->json(['error'=>'','notification'=>$notification]);
+	    		} else {
+	    			return response()->json(['error'=>'chỉ disable được khi đúng ngày đăng tin và trước 20h!']);
+	    		}
+	    		
+	    	
+	    }else{
+	    	return response()->json(['error'=>'hết giờ disable']);
 	    }
     }
     public function save(Request $req){
@@ -57,7 +91,7 @@ class NotificationController extends Controller
 	    		if ($KqFormat>date('01:00:00')) {
 	    			$update=Notification::find($req->id);
 	    			
-	    			if (date('Y-m-d',strtotime($update->created_at))!==date('Y-m-d')) {
+	    			if (date('Y-m-d',strtotime($update->created_at))==date('Y-m-d')) {
 		    			$update->fill($req->all());
 	    				$update->save();
 	    				return response()->json(['notification'=>$update,'error'=>'']);
